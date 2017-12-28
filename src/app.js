@@ -12,7 +12,25 @@ let locations = [
         name: 'Loc 2'
     }
 ];
+let selectedMarkerSymbol;
 
+const LocationsViewModel = {
+    locations: ko.observableArray(locations),
+    selectedLocation: ko.observable(),
+    filterString: ko.observable(""),
+    getFilteredLocations: function () {
+        var filterString = this.filterString().toLowerCase();
+        return this.locations().filter(
+            location => {
+                let result = !filterString || location.name.toLowerCase().indexOf(filterString) > -1;
+                if (location.marker) {
+                    location.marker.setMap(result ? map : null);
+                }
+                return result;
+            }
+        )
+    }
+};
 
 function initMap() {
     var mapCenter = { lat: 29.424122, lng: -98.493629 };
@@ -23,11 +41,15 @@ function initMap() {
     });
 
     // Add makers for each location
-    for (var i = 0; i < locations.length; i++) {
-        var latLng = new google.maps.LatLng(locations[i].lat, locations[i].lon);
-        var marker = new google.maps.Marker({
+    LocationsViewModel.locations().forEach(location => {
+        const latLng = new google.maps.LatLng(location.lat, location.lon);
+        const marker = new google.maps.Marker({
             position: latLng,
             map: map
         });
-    }
+
+        LocationsViewModel.locations.replace(location, Object.assign({ marker: marker }, location));
+    });
 }
+
+ko.applyBindings(LocationsViewModel);

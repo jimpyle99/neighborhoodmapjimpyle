@@ -9,8 +9,11 @@
         <div class="content-wrapper">
             <div class="filter-menu">
                 <div class="title">Jim Locations</div>
-                <input type="text" id="location" />
-                <button>Filter</button>
+                <input type="text" data-bind="textInput: filterString" />
+                <div class="locations" data-bind="foreach: getFilteredLocations()">
+                    <div class="location" data-bind="text: name">
+                    </div>
+                </div>
             </div>
             <div class="page">
                 <div class="menu-header"></div>
@@ -20,6 +23,6 @@
     </body>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
     <script src="app.js"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=<key>&callback=initMap"  type="text/javascript"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIAvj-D8gGc2Hg2ouaJ7EfjHIs4V7djvA&callback=initMap"  type="text/javascript"></script>
 
 </html>

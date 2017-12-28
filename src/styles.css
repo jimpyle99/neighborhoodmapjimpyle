@@ -7,6 +7,11 @@ html {
     padding: 0;
 }
 
+body {
+    color: rgb(255, 255, 255);
+    font-family: sans-serif;
+}
+
 .content-wrapper {
     display: flex;
 }
