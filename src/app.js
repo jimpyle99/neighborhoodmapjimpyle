@@ -7,8 +7,8 @@ let locations = [
         name: '78209'
     },
     {
-        lat: 28.4595258,
-        lon: -99.4637468,
+        lat: 29.27,
+        lon: -98.27,
         name: 'Loc 2'
     }
 ];
