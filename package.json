@@ -1,0 +1,25 @@
+{
+  "name": "neighborhoodmapjimpyle",
+  "version": "1.0.0",
+  "description": "Neighborhood Map",
+  "main": "index.js",
+  "dependencies": {
+  },
+  "devDependencies": {
+      "browser-sync": "^2.21.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cd src && browser-sync start --server --files \"*.*\" && cd .."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jimpyle99/neighborhoodmapjimpyle.git"
+  },
+  "author": "Jim Pyle",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jimpyle99/neighborhoodmapjimpyle/issues"
+  },
+  "homepage": "https://github.com/jimpyle99/neighborhoodmapjimpyle#readme"
+}
