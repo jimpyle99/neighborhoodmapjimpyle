@@ -8,7 +8,23 @@ html {
 }
 
 .content-wrapper {
-    background-color: blue;
-    width: 100vw;
-    height: 100vh;
+    display: flex;
+}
+
+.filter-menu {
+    width: 350px;
+    background-color: rgb(0, 0, 0);
+}
+
+.page {
+
+}
+
+.menu-header {
+    height: 50px;
+    background-color: rgb(64, 64, 64);
+}
+
+.map {
+
 }
