@@ -42,20 +42,22 @@ let locations = [
         name: 'The Guenther House',
         foursquareId: '4ad4bffff964a52063eb20e3'
     },
-    // {
-    //     lat: 29.41242890388021,
-    //     lng: -98.49232920015501,
-    //     name: 'Liberty Bar',
-    //     foursquareId: '4c06ea8ccf8c76b008473b65'
-    // },
     {
         lat: 29.41242890388021,
         lng: -98.49232920015501,
-        name: 'I am error',
-        foursquareId: null
+        name: 'Liberty Bar',
+        foursquareId: '4c06ea8ccf8c76b008473b65'
     },
+    // an example of an error for demo only
+    // {
+    //     lat: 29.41242890388021,
+    //     lng: -98.49232920015501,
+    //     name: 'I am error',
+    //     foursquareId: null
+    // },
 ];
 let selectedMarkerSymbol;
+
 
 const LocationsViewModel = {
     locations: ko.observableArray(locations),
@@ -90,10 +92,12 @@ const LocationsViewModel = {
         fourSquareRequest(location.foursquareId)
             .then(fourSquareInfo => showInfoWindow(location, fourSquareInfo))
             .then(() => location.marker.setIcon(blueMarker))
+            //gives feedback incase the four square api does not work for some reason
             .catch(err => alert("Iunnnno....sum kinda error\n" + err));
     }
 };
 
+// connects to four square api and retuns the desired values
 function fourSquareRequest(id) {
     const fourSquareApiUrl = `https://api.foursquare.com/v2/venues/${id}?client_id=${clientId}&client_secret=${clientSecret}&v=20170801`;
     return fetch(fourSquareApiUrl)

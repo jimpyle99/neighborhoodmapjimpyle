@@ -24,7 +24,8 @@
                     <a href="#" class="btn-close" onclick="closeSlideMenu()">&times;</a>
                         <div class="filter-locations">
                             <div class="title">Filter Locations</div>
-                            <input type="text" data-bind="textInput: filterString" />
+                            <input type="text" id="filter-box" size="15" data-bind="textInput: filterString" />
+                                    <button data-bind="click: filterString('')">Clear</button>
                                     <div class="locations" data-bind="foreach: getFilteredLocations()">
                                         <div class="location" data-bind="text: name,
                                                                      event: { click: $parent.selectLocation }">
