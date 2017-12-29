@@ -16,7 +16,7 @@
                         <path d="M0,23 30,23" stroke="#fff" stroke-width="5"/>
                     </svg>
                     </a>
-                    <h1>Mahncke Park</h1>
+                    <h1>Downtown San Antonio</h1>
                 </span>
             </nav>
             <div id="page1">
@@ -24,7 +24,7 @@
                     <a href="#" class="btn-close" onclick="closeSlideMenu()">&times;</a>
                         <div class="filter-locations">
                             <div class="title">Filter Locations</div>
-                            <input class="" type="text" data-bind="textInput: filterString" />
+                            <input type="text" data-bind="textInput: filterString" />
                                     <div class="locations" data-bind="foreach: getFilteredLocations()">
                                         <div class="location" data-bind="text: name,
                                                                      event: { click: $parent.selectLocation }">
@@ -33,10 +33,9 @@
                         </div>
                 </div>
             </div>
-
-                <div id="page2">
-                    <div id="map"></div>
-                </div>
+            <div id="page2">
+                <div id="map"></div>
+            </div>
             </div>
         </div>
     </body>
