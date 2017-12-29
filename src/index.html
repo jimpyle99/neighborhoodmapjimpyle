@@ -7,17 +7,36 @@
     </head>
     <body>
         <div class="content-wrapper">
-            <div class="filter-menu">
-                <div class="title">Jim Locations</div>
-                <input type="text" data-bind="textInput: filterString" />
-                <div class="locations" data-bind="foreach: getFilteredLocations()">
-                    <div class="location" data-bind="text: name">
-                    </div>
+            <nav class="navbar">
+                <span class="navbar2">
+                    <a href="#" onclick="openSlideMenu()">
+                    <svg width="30" height="30">
+                        <path d="M0,5 30,5" stroke="#fff" stroke-width="5"/>
+                        <path d="M0,14 30,14" stroke="#fff" stroke-width="5"/>
+                        <path d="M0,23 30,23" stroke="#fff" stroke-width="5"/>
+                    </svg>
+                    </a>
+                    <h1>Mahncke Park</h1>
+                </span>
+            </nav>
+            <div id="page1">
+                <div id="filter-menu" class='side-nav hide-filter-menu'>
+                    <a href="#" class="btn-close" onclick="closeSlideMenu()">&times;</a>
+                        <div class="filter-locations">
+                            <div class="title">Filter Locations</div>
+                            <input class="" type="text" data-bind="textInput: filterString" />
+                                    <div class="locations" data-bind="foreach: getFilteredLocations()">
+                                        <div class="location" data-bind="text: name,
+                                                                     event: { click: $parent.selectLocation }">
+
+                                    </div>
+                        </div>
                 </div>
             </div>
-            <div class="page">
-                <div class="menu-header"></div>
-                <div id="map"></div>
+
+                <div id="page2">
+                    <div id="map"></div>
+                </div>
             </div>
         </div>
     </body>
