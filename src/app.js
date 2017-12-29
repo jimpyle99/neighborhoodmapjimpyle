@@ -48,7 +48,7 @@ let locations = [
         name: 'Liberty Bar',
         foursquareId: '4c06ea8ccf8c76b008473b65'
     },
-    // an example of an error for demo only
+    //  an example of an error for demo only
     // {
     //     lat: 29.41242890388021,
     //     lng: -98.49232920015501,
@@ -63,6 +63,11 @@ const LocationsViewModel = {
     locations: ko.observableArray(locations),
     selectedLocation: ko.observable({}),
     filterString: ko.observable(''),
+
+    //clears text input box
+    clearFilterString: function() {
+        var filterString = this.filterString('');
+    },
 
     // this is bound to the view model, as expected, here
     getFilteredLocations: function () {

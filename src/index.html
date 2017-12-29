@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <title>Jim Pyle Neighborhood Map Project</title>
         <link rel="stylesheet" href="styles.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
         <div class="content-wrapper">
@@ -25,7 +26,7 @@
                         <div class="filter-locations">
                             <div class="title">Filter Locations</div>
                             <input type="text" id="filter-box" size="15" data-bind="textInput: filterString" />
-                                    <button data-bind="click: filterString('')">Clear</button>
+                                    <button data-bind="click: clearFilterString">Clear</button>
                                     <div class="locations" data-bind="foreach: getFilteredLocations()">
                                         <div class="location" data-bind="text: name,
                                                                      event: { click: $parent.selectLocation }">
