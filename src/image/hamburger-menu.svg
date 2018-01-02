@@ -1,0 +1,8 @@
+<svg version="1.1"
+     baseProfile="full"
+     width="25" height="25"
+     xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,5 30,5" stroke="#fff" stroke-width="4"/>
+    <path d="M0,14 30,14" stroke="#fff" stroke-width="4"/>
+    <path d="M0,23 30,23" stroke="#fff" stroke-width="4"/>
+</svg>

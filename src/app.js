@@ -96,7 +96,7 @@ const LocationsViewModel = {
                 //makes sure low case text matches
                 let result = !filterString || location.name.toLowerCase().indexOf(filterString) > -1;
                 if (location.marker) {
-                    location.marker.setMap(result ? map : null);
+                    location.marker.setVisible(result ? map : null);
                 }
                 return result;
             }
@@ -105,7 +105,7 @@ const LocationsViewModel = {
 
     // Can't use 'this' because it is bound to the selected item instead of the view model
     selectLocation: function (location) {
-        this.clearSelectedLocations();
+        LocationsViewModel.clearSelectedLocations();
 
         LocationsViewModel.selectedLocation(location);
         fourSquareRequest(location.foursquareId)

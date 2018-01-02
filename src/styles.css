@@ -64,7 +64,6 @@ body {
     overflow: hidden;
     position: fixed;
     visibility: hidden;
-    transition: 2s;
 }
 
 .side-nav{
@@ -75,17 +74,16 @@ body {
     padding: 0px 10px 0px;
     width: 160px;
     height: 690px;
-    position: fixed;
     z-index:1;
     top:0;
     left:0;
     bottom: 100;
     right: 100;
     background: #111;
-    transition:1s;
     opacity: 0.8;
-    font-size: 1.5em;
+    font-size: 1.2em;
     cursor: pointer;
+    position: absolute;
 }
 
 .side-nav a{
@@ -94,7 +92,6 @@ body {
     font-size:2em;
     color: #ffffff;
     display: block;
-    transition:1s;
 }
 
 .input {
