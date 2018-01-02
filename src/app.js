@@ -62,11 +62,30 @@ let selectedMarkerSymbol;
 const LocationsViewModel = {
     locations: ko.observableArray(locations),
     selectedLocation: ko.observable({}),
-    filterString: ko.observable(''),
+    filterString:  ko.observable(''),
+    isMenuOpen: ko.observable(false),
+
+    openSlideMenu: function () {
+        this.isMenuOpen(true);
+    },
+
+    closeSlideMenu: function () {
+        this.isMenuOpen(false);
+    },
+
+    clearSelectedLocations: function () {
+        this.locations().forEach(item => {
+            if (item.infoWindow) {
+                item.infoWindow.close();
+                item.marker.setIcon(null);
+            }
+        })
+    },
 
     //clears text input box
-    clearFilterString: function() {
+    clearFilterString: function () {
         var filterString = this.filterString('');
+        this.clearSelectedLocations();
     },
 
     // this is bound to the view model, as expected, here
@@ -86,12 +105,7 @@ const LocationsViewModel = {
 
     // Can't use 'this' because it is bound to the selected item instead of the view model
     selectLocation: function (location) {
-        // close previous info window
-        const prevLocation = LocationsViewModel.selectedLocation();
-        if (prevLocation.infoWindow) {
-            prevLocation.infoWindow.close();
-            prevLocation.marker.setIcon(null);
-        }
+        this.clearSelectedLocations();
 
         LocationsViewModel.selectedLocation(location);
         fourSquareRequest(location.foursquareId)
@@ -111,12 +125,12 @@ function fourSquareRequest(id) {
             let venue = json.response.venue;
             let photo = venue.bestPhoto;
             return {
-                name: venue.name,
-                photo: `${photo.prefix}100x100${photo.suffix}`,
-                address: venue.location.formattedAddress.join('\n'),
-                rating: venue.rating,
-                ratingColor: venue.ratingColor,
-                shortUrl: venue.shortUrl
+                name: venue.name || '',
+                photo: photo.prefix ? `${photo.prefix}100x100${photo.suffix}` : '',
+                address: (venue.location.formattedAddress || [] ).join('\n'),
+                rating: venue.rating || '',
+                ratingColor: venue.ratingColor || '',
+                shortUrl: venue.shortUrl || ''
             };
         });
 }
@@ -138,15 +152,8 @@ function showInfoWindow(location, info) {
     location.infoWindow.open(map, location.marker);
 }
 
-function openSlideMenu(){
-  document.getElementById('filter-menu').classList.remove('hide-filter-menu');
-}
-
-function closeSlideMenu(){
-  document.getElementById('filter-menu').classList.add('hide-filter-menu');
-}
-
 function initMap() {
+    window.clearTimeout(apiFailTimeout);
     var mapCenter = locations.find(item => item.name === 'The San Antonio River Walk')
     map = new google.maps.Map(document.getElementById('map'), {
         zoom: 14,
@@ -169,6 +176,12 @@ function initMap() {
     });
 }
 
+if (!ko.applyBindings) {
+    alert('Failed to load Knockout library');
+}
 
+const apiFailTimeout = window.setTimeout(function () {
+    alert('Failed to load Google API');
+}, 2000);
 
 ko.applyBindings(LocationsViewModel);

@@ -85,6 +85,7 @@ body {
     transition:1s;
     opacity: 0.8;
     font-size: 1.5em;
+    cursor: pointer;
 }
 
 .side-nav a{
@@ -195,6 +196,7 @@ body {
     padding-top:0px;
     font-size: 1.75em;
     height: 800px;
+    cursor: pointer;
 }
 
 .btn-close {
@@ -314,6 +316,7 @@ body {
     padding-top:0px;
     font-size: 2em;
     height: 1000px;
+    cursor: pointer;
 }
 
 .btn-close {

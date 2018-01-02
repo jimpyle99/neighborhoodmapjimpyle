@@ -10,7 +10,7 @@
         <div class="content-wrapper">
             <nav class="navbar">
                 <span class="navbar2">
-                    <a href="#" onclick="openSlideMenu()">
+                    <a href="#" data-bind="event: { click: openSlideMenu }">
                     <svg width="30" height="30">
                         <path d="M0,5 30,5" stroke="#fff" stroke-width="5"/>
                         <path d="M0,14 30,14" stroke="#fff" stroke-width="5"/>
@@ -21,12 +21,12 @@
                 </span>
             </nav>
             <div id="page1">
-                <div id="filter-menu" class='side-nav hide-filter-menu'>
-                    <a href="#" class="btn-close" onclick="closeSlideMenu()">&times;</a>
+                <div id="filter-menu" class='side-nav' data-bind="css: { 'hide-filter-menu': !isMenuOpen() }">
+                    <a href="#" class="btn-close" data-bind="event: { click: closeSlideMenu }">&times;</a>
                         <div class="filter-locations">
                             <div class="title">Filter Locations</div>
                             <input type="text" id="filter-box" size="15" data-bind="textInput: filterString" />
-                                    <button data-bind="click: clearFilterString">Clear</button>
+                                    <button data-bind="event: { click: clearFilterString }">Clear</button>
                                     <div class="locations" data-bind="foreach: getFilteredLocations()">
                                         <div class="location" data-bind="text: name,
                                                                      event: { click: $parent.selectLocation }">
