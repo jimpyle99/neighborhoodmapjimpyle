@@ -121,7 +121,7 @@ const LocationsViewModel = {
 
 // connects to four square api and retuns the desired values
 function fourSquareRequest(id) {
-    const fourSquareApiUrl = `httdps://api.foursquare.com/v2/venues/${id}?client_id=${clientId}&client_secret=${clientSecret}&v=20170801`;
+    const fourSquareApiUrl = `https://api.foursquare.com/v2/venues/${id}?client_id=${clientId}&client_secret=${clientSecret}&v=20170801`;
     return fetch(fourSquareApiUrl)
         .then(response => {
             if (!response.ok) {
