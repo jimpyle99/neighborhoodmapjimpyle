@@ -96,7 +96,7 @@ const LocationsViewModel = {
                 //makes sure low case text matches
                 let result = !filterString || location.name.toLowerCase().indexOf(filterString) > -1;
                 if (location.marker) {
-                    location.marker.setVisible(result ? map : null);
+                    location.marker.setVisible(result ? true : false);
                 }
                 return result;
             }
@@ -112,15 +112,23 @@ const LocationsViewModel = {
             .then(fourSquareInfo => showInfoWindow(location, fourSquareInfo))
             .then(() => location.marker.setIcon(blueMarker))
             //gives feedback incase the four square api does not work for some reason
-            .catch(err => alert("Iunnnno....sum kinda error\n" + err));
+            .catch(err => {
+                console.error(err);
+                alert("Iunnnno....sum kinda error\n" + err)
+            });
     }
 };
 
 // connects to four square api and retuns the desired values
 function fourSquareRequest(id) {
-    const fourSquareApiUrl = `https://api.foursquare.com/v2/venues/${id}?client_id=${clientId}&client_secret=${clientSecret}&v=20170801`;
+    const fourSquareApiUrl = `httdps://api.foursquare.com/v2/venues/${id}?client_id=${clientId}&client_secret=${clientSecret}&v=20170801`;
     return fetch(fourSquareApiUrl)
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw response;
+            }
+            return response.json();
+        })
         .then(json => {
             let venue = json.response.venue;
             let photo = venue.bestPhoto;
@@ -153,7 +161,6 @@ function showInfoWindow(location, info) {
 }
 
 function initMap() {
-    window.clearTimeout(apiFailTimeout);
     var mapCenter = locations.find(item => item.name === 'The San Antonio River Walk')
     map = new google.maps.Map(document.getElementById('map'), {
         zoom: 14,
@@ -176,12 +183,12 @@ function initMap() {
     });
 }
 
+function libLoadFailure(library) {
+    alert(`Failed to load ${library} API`);
+}
+
 if (!ko.applyBindings) {
     alert('Failed to load Knockout library');
 }
-
-const apiFailTimeout = window.setTimeout(function () {
-    alert('Failed to load Google API');
-}, 2000);
 
 ko.applyBindings(LocationsViewModel);
